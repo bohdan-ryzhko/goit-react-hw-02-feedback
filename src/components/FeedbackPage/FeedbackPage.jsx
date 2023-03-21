@@ -14,8 +14,8 @@ import {
 export class FeedbackPage extends Component {
 
 	state = {
-		good: 0,
-		neutral: 0,
+		good: 3,
+		neutral: 1,
 		bad: 0
 	}
 

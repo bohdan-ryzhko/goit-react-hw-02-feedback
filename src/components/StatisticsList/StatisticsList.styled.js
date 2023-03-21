@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const StatisticsBoard = styled.ul`
-	max-width: 120px;
+	max-width: 210px;
 	height: 100px;
 	display: flex;
 	flex-direction: column;
