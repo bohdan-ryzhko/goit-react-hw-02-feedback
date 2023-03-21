@@ -5,10 +5,11 @@ export const StatisticsBoard = styled.ul`
 	height: 100px;
 	display: flex;
 	flex-direction: column;
+	gap: 10px;
 	justify-content: space-between;
 `;
-
-export const StatisticsInfo = styled.li`
+	
+	export const StatisticsInfo = styled.li`
 	display: flex;
 	justify-content: space-between;
 	font-size: 20px;

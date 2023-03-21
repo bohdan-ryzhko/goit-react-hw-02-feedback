@@ -1,9 +1,9 @@
+import { Component } from "react";
 import PropTypes from 'prop-types';
 
 import { StatiscticsList } from "components/StatisticsList/StatisticsList";
-import { Component } from "react";
-
-import { FeedbackList } from "../FeedbackButtonList/FeedbackButtonList";
+import { FeedbackOptions } from "../FeedbackOptions/FeedbackOptions";
+import { Notification } from "components/Notification/Notification";
 
 import {
 	Container,
@@ -11,26 +11,54 @@ import {
 	FeedbackTitle,
 } from "./FeedbackPage.styled";
 
-export class FeedbackPage extends Component {
+import { options } from "../../options/options";
 
+export class FeedbackPage extends Component {
 	state = {
-		good: 3,
-		neutral: 1,
-		bad: 0
+		good: 0,
+		neutral: 0,
+		bad: 0,
+		feedback: null,
+	}
+
+	onLeaveFeedback = (option) => () => {
+		this.setState(prevState => {
+			return {
+				feedback: option,
+				[option]: prevState[option] + 1,
+			}
+		})
 	}
 
 	render() {
 		const { good, neutral, bad } = this.state;
+		const total = good + neutral + bad;
+		const positivePercentage = Math.round(good * 100 / total);
+
 		return (
 			<Container>
 				<FeedbackPageInner>
 					<FeedbackTitle>Please leave feedback</FeedbackTitle>
-					<FeedbackList />
+					<FeedbackOptions options={options} onLeaveFeedback={this.onLeaveFeedback} />
 				</FeedbackPageInner>
-				<FeedbackPageInner>
-					<FeedbackTitle>Statisctics</FeedbackTitle>
-					<StatiscticsList good={good} neutral={neutral} bad={bad} />
-				</FeedbackPageInner>
+				{total === 0
+					? <>
+						<Notification message="There is no feedback" />
+					</>
+					:
+					(<>
+						<FeedbackPageInner>
+							<FeedbackTitle>Statisctics</FeedbackTitle>
+							<StatiscticsList
+								good={good}
+								neutral={neutral}
+								bad={bad}
+								total={total}
+								positivePercentage={positivePercentage}
+							/>
+						</FeedbackPageInner>
+					</>)
+				}
 			</Container>
 		)
 	}
@@ -41,5 +69,5 @@ FeedbackPage.propTypes = {
 		good: PropTypes.number.isRequired,
 		neutral: PropTypes.number.isRequired,
 		bad: PropTypes.number.isRequired
-	})
+	}),
 }

@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { StatisticsInfo } from "../StatisticsList/StatisticsList.styled";
 
-export const CountPositiveFeedbackPercentage = ({ precent }) => {
+export const CountPositiveFeedbackPercentage = ({ positivePercentage = 0 }) => {
 	return (
 		<StatisticsInfo>
 			<span>Positve feedback: </span>
-			<span>{precent}%</span>
+			<span>{positivePercentage}%</span>
 		</StatisticsInfo>
 	)
 }
 
 CountPositiveFeedbackPercentage.propTypes = {
-	precent: PropTypes.number.isRequired,
+	positivePercentage: PropTypes.number.isRequired,
 }
