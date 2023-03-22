@@ -18,16 +18,12 @@ export class FeedbackPage extends Component {
 		good: 0,
 		neutral: 0,
 		bad: 0,
-		feedback: null,
 	}
 
 	onLeaveFeedback = (option) => () => {
-		this.setState(prevState => {
-			return {
-				feedback: option,
+		this.setState(prevState => ({
 				[option]: prevState[option] + 1,
-			}
-		})
+			}))
 	}
 
 	render() {
