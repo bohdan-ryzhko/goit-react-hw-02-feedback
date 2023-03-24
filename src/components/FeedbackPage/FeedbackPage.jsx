@@ -11,8 +11,6 @@ import {
 	FeedbackTitle,
 } from "./FeedbackPage.styled";
 
-import { options } from "../../options/options";
-
 export class FeedbackPage extends Component {
 	state = {
 		good: 0,
@@ -28,6 +26,7 @@ export class FeedbackPage extends Component {
 
 	render() {
 		const { good, neutral, bad } = this.state;
+		const options = Object.keys(this.state);
 		const total = good + neutral + bad;
 		const positivePercentage = Math.round(good * 100 / total);
 

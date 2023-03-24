@@ -4,8 +4,8 @@ import { FeedbackButtonList, FeedbackItem, FeedbackButton } from "./FeedbackOpti
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 	return (
 		<FeedbackButtonList>
-			{options.map(({ option, id }) => (
-				<FeedbackItem key={id}>
+			{options.map(option => (
+				<FeedbackItem key={option}>
 					<FeedbackButton onClick={onLeaveFeedback(option)}>{option}</FeedbackButton>
 				</FeedbackItem>
 			))}
@@ -14,9 +14,6 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 }
 
 FeedbackOptions.propTypes = {
-	options: PropTypes.arrayOf(PropTypes.exact({
-		option: PropTypes.string.isRequired,
-		id: PropTypes.string.isRequired,
-	})),
+	options: PropTypes.arrayOf(PropTypes.string.isRequired),
 	onLeaveFeedback: PropTypes.func.isRequired,
 }
